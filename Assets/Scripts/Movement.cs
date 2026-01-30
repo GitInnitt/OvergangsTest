@@ -4,7 +4,9 @@ public class CarController : MonoBehaviour
 {
     [SerializeField] private float _speed = 10f;
     [SerializeField] private float _turnSpeed = 100f;
-    [SerializeField] private float _acceleration = 0f;
+    [SerializeField] private float _acceleration = 7f;
+
+    [SerializeField] private SimpleTimer SimpleTimer;
 
     void Update()
     {
@@ -20,5 +22,13 @@ public class CarController : MonoBehaviour
 
 
         transform.Rotate(Vector3.up * turnInput * _turnSpeed * Time.deltaTime);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("finish"))
+        {
+           SimpleTimer.Finish();    
+        }
     }
 }
